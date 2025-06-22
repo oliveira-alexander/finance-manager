@@ -2,21 +2,21 @@ package edu.financemanager.dtos.transaction;
 
 import edu.financemanager.enums.TransactionType;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TransactionDTO {
     private String description;
     private TransactionType type;
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private LocalTime time;
     private float value;
 
     // Constructors
     public TransactionDTO() {}
 
     public TransactionDTO(String description, TransactionType type,
-                       Date date, Time time, float value)
+                       LocalDate date, LocalTime time, float value)
     {
         this.description = description;
         this.type = type;
@@ -42,19 +42,19 @@ public class TransactionDTO {
         this.type = type;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
