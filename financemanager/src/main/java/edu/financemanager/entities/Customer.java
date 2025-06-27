@@ -18,16 +18,26 @@ public class Customer {
     @OneToOne (mappedBy = "customer")
     private Account account;
 
+    private String email;
+
     // Constructors
     public Customer() {}
 
-    public Customer(String name, LocalDate birthday)
+    public Customer(String name, LocalDate birthday, String email)
     {
         this.name = name;
         this.birthday = birthday;
+        this.email = email;
     }
 
     // Getters & Setters
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public long getId() {
         return id;
