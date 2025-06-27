@@ -1,11 +1,15 @@
 package edu.financemanager.dtos.transaction;
 
+import edu.financemanager.entities.Customer;
 import edu.financemanager.enums.TransactionType;
+import org.antlr.v4.runtime.atn.SemanticContext;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TransactionDTO {
+    private Customer sender;
+    private Customer receiver;
     private String description;
     private TransactionType type;
     private LocalDate date;
@@ -15,9 +19,16 @@ public class TransactionDTO {
     // Constructors
     public TransactionDTO() {}
 
-    public TransactionDTO(String description, TransactionType type,
-                       LocalDate date, LocalTime time, float value)
+    public TransactionDTO(Customer sender,
+                          Customer receiver,
+                          String description,
+                          TransactionType type,
+                          LocalDate date,
+                          LocalTime time,
+                          float value)
     {
+        this.sender = sender;
+        this.receiver = receiver;
         this.description = description;
         this.type = type;
         this.date = date;
@@ -26,6 +37,22 @@ public class TransactionDTO {
     }
 
     // Getters & Setters
+    public Customer getSender() {
+        return sender;
+    }
+
+    public void setSender(Customer sender) {
+        this.sender = sender;
+    }
+
+    public Customer getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(Customer receiver) {
+        this.receiver = receiver;
+    }
+
     public String getDescription() {
         return description;
     }

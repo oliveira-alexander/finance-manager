@@ -1,19 +1,18 @@
 package edu.financemanager.controllers;
 
 import edu.financemanager.dtos.transaction.TransactionDTO;
-import edu.financemanager.enums.TransactionType;
+import edu.financemanager.entities.Transaction;
 import edu.financemanager.interfaces.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping (value = "/transaction")
-public class TransactionsController {
+public class TransactionController {
 
     @Autowired
     private TransactionService service;
@@ -26,9 +25,9 @@ public class TransactionsController {
     }
 
     @PostMapping
-    public TransactionDTO insert(@RequestBody TransactionDTO transaction)
+    public ResponseEntity<Transaction> insert(@RequestBody TransactionDTO transaction)
     {
-        return service.insert(transaction);
+        return ResponseEntity.ok(service.insert(transaction));
     }
 
 }

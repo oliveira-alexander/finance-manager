@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TransactionService {
     List<TransactionDTO> getAll();
-    TransactionDTO insert(TransactionDTO transaction);
+    Transaction insert(TransactionDTO transaction);
 }
