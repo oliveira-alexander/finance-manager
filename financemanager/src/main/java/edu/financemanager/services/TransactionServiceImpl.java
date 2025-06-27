@@ -1,5 +1,6 @@
 package edu.financemanager.services;
 
+import edu.financemanager.dtos.transaction.TransactionCreateDTO;
 import edu.financemanager.dtos.transaction.TransactionDTO;
 import edu.financemanager.entities.Customer;
 import edu.financemanager.entities.Transaction;
@@ -32,6 +33,7 @@ public class TransactionServiceImpl implements TransactionService {
         for(var transaction : transactionsDb)
         {
             transactionsDto.add(new TransactionDTO(
+                                                    transaction.getId(),
                                                     transaction.getSender(),
                                                     transaction.getReceiver(),
                                                     transaction.getDescription(),
@@ -46,10 +48,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction insert(TransactionDTO transaction) {
+    public TransactionDTO insert(TransactionCreateDTO transaction) {
+        Customer sender = customerRepository.findById(transaction.getSenderId()).get();
+        Customer receiver = customerRepository.findById(transaction.getReceiverId()).get();
+
+
         Transaction newTransaction = new Transaction(
-                transaction.getSender(),
-                transaction.getReceiver(),
+                sender,
+                receiver,
                 transaction.getDescription(),
                 transaction.getType(),
                 transaction.getDate(),
@@ -59,6 +65,15 @@ public class TransactionServiceImpl implements TransactionService {
 
         repository.save(newTransaction);
 
-        return newTransaction;
+        return new TransactionDTO(
+                newTransaction.getId(),
+                newTransaction.getSender(),
+                newTransaction.getReceiver(),
+                newTransaction.getDescription(),
+                newTransaction.getTransaction_type(),
+                newTransaction.getTransaction_date(),
+                newTransaction.getTransaction_time(),
+                newTransaction.getTransaction_value()
+        );
     }
 }

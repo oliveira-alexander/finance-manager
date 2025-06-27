@@ -1,7 +1,7 @@
 package edu.financemanager.controllers;
 
-import edu.financemanager.dtos.transaction.AccountDTO;
-import edu.financemanager.entities.Account;
+import edu.financemanager.dtos.account.AccountCreateDTO;
+import edu.financemanager.dtos.account.AccountDTO;
 import edu.financemanager.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountDTO> insert(@RequestBody AccountDTO account)
+    public ResponseEntity<AccountDTO> insert(@RequestBody AccountCreateDTO account)
     {
         return ResponseEntity.ok(service.insert(account));
     }
