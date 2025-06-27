@@ -18,7 +18,8 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO insert(CustomerCreateDTO customer) {
         Customer newCustomer = new Customer(
                 customer.getName(),
-                customer.getBirthday()
+                customer.getBirthday(),
+                customer.getEmail()
         );
 
         repository.save(newCustomer);
@@ -26,7 +27,8 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerDTO(
                 newCustomer.getId(),
                 newCustomer.getName(),
-                newCustomer.getBirthday()
+                newCustomer.getBirthday(),
+                newCustomer.getEmail()
         );
     }
 
@@ -40,7 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerDTO(
                 customerEntity.getId(),
                 customerEntity.getName(),
-                customerEntity.getBirthday()
+                customerEntity.getBirthday(),
+                customerEntity.getEmail()
         );
     }
 }

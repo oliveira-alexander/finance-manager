@@ -19,9 +19,9 @@ public class TransactionController {
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @GetMapping
-    public List<TransactionDTO> getAll()
+    public ResponseEntity<List<TransactionDTO>> getAll()
     {
-        return service.getAll();
+        return ResponseEntity.ok(service.getAll());
     }
 
     @PostMapping
