@@ -1,5 +1,6 @@
 package edu.financemanager.interfaces;
 
+import edu.financemanager.dtos.transaction.TransactionCreateDTO;
 import edu.financemanager.dtos.transaction.TransactionDTO;
 import edu.financemanager.entities.Transaction;
 
@@ -7,5 +8,5 @@ import java.util.List;
 
 public interface TransactionService {
     List<TransactionDTO> getAll();
-    Transaction insert(TransactionDTO transaction);
+    TransactionDTO insert(TransactionCreateDTO transaction);
 }

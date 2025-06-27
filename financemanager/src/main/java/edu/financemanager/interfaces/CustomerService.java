@@ -1,9 +1,10 @@
 package edu.financemanager.interfaces;
 
-import edu.financemanager.dtos.transaction.CustomerDTO;
+import edu.financemanager.dtos.customer.CustomerCreateDTO;
+import edu.financemanager.dtos.customer.CustomerDTO;
 import edu.financemanager.entities.Customer;
 
 public interface CustomerService {
-    Customer insert(CustomerDTO customer);
+    CustomerDTO insert(CustomerCreateDTO customer);
     CustomerDTO get(long id);
 }

@@ -1,27 +1,27 @@
-package edu.financemanager.dtos.transaction;
+package edu.financemanager.dtos.account;
 
 import edu.financemanager.entities.Customer;
 
-public class AccountDTO {
+public class AccountCreateDTO {
+
     private double balance;
-
     private double credit_limit;
-
-    private Customer customer;
+    private long customerId;
 
     // Constructors
 
-    public AccountDTO() {}
+    public AccountCreateDTO() {}
 
-    public AccountDTO(double balance, double credit_limit, Customer customer)
+    public AccountCreateDTO(double balance, double credit_limit, long customerId)
     {
         this.balance = balance;
         this.credit_limit = credit_limit;
-        this.customer = customer;
+        this.customerId = customerId;
 
     }
 
     // Getters & Setters
+
     public double getBalance() {
         return balance;
     }
@@ -38,11 +38,11 @@ public class AccountDTO {
         this.credit_limit = credit_limit;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 }

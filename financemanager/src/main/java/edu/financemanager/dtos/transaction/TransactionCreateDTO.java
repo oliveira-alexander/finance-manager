@@ -1,16 +1,13 @@
 package edu.financemanager.dtos.transaction;
 
-import edu.financemanager.entities.Customer;
 import edu.financemanager.enums.TransactionType;
-import org.antlr.v4.runtime.atn.SemanticContext;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TransactionDTO {
-    private long id;
-    private Customer sender;
-    private Customer receiver;
+public class TransactionCreateDTO {
+    private long senderId;
+    private long receiverId;
     private String description;
     private TransactionType type;
     private LocalDate date;
@@ -18,20 +15,19 @@ public class TransactionDTO {
     private float value;
 
     // Constructors
-    public TransactionDTO() {}
+    public TransactionCreateDTO() {}
 
-    public TransactionDTO(long id,
-                          Customer sender,
-                          Customer receiver,
+    public TransactionCreateDTO(
+                          long senderId,
+                          long receiverId,
                           String description,
                           TransactionType type,
                           LocalDate date,
                           LocalTime time,
                           float value)
     {
-        this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
+        this.senderId = senderId;
+        this.receiverId = receiverId;
         this.description = description;
         this.type = type;
         this.date = date;
@@ -40,28 +36,20 @@ public class TransactionDTO {
     }
 
     // Getters & Setters
-    public long getId() {
-        return id;
+    public long getSenderId() {
+        return senderId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setSenderId(long senderId) {
+        this.senderId = senderId;
     }
 
-    public Customer getSender() {
-        return sender;
+    public long getReceiverId() {
+        return receiverId;
     }
 
-    public void setSender(Customer sender) {
-        this.sender = sender;
-    }
-
-    public Customer getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(Customer receiver) {
-        this.receiver = receiver;
+    public void setReceiverId(long receiverId) {
+        this.receiverId = receiverId;
     }
 
     public String getDescription() {

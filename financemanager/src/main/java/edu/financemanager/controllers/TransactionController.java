@@ -1,7 +1,7 @@
 package edu.financemanager.controllers;
 
+import edu.financemanager.dtos.transaction.TransactionCreateDTO;
 import edu.financemanager.dtos.transaction.TransactionDTO;
-import edu.financemanager.entities.Transaction;
 import edu.financemanager.interfaces.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<Transaction> insert(@RequestBody TransactionDTO transaction)
+    public ResponseEntity<TransactionDTO> insert(@RequestBody TransactionCreateDTO transaction)
     {
         return ResponseEntity.ok(service.insert(transaction));
     }
