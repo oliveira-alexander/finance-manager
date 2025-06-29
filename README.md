@@ -8,6 +8,6 @@ O Finance Manager é um projeto de estudos sobre a utilização de Java com o fr
 * Maven
 * Spring Boot 3.5.3
 * Spring Boot Web
-* ORM JPA
-* Database
+* ORM JPA (Hibernate)
+* Database H2 (in-memory)
 * Swagger
