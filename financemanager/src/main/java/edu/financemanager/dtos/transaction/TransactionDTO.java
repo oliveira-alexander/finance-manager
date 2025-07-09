@@ -2,11 +2,18 @@ package edu.financemanager.dtos.transaction;
 
 import edu.financemanager.entities.Customer;
 import edu.financemanager.enums.TransactionType;
-import org.antlr.v4.runtime.atn.SemanticContext;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransactionDTO {
     private long id;
     private Customer sender;
@@ -16,91 +23,4 @@ public class TransactionDTO {
     private LocalDate date;
     private LocalTime time;
     private float value;
-
-    // Constructors
-    public TransactionDTO() {}
-
-    public TransactionDTO(long id,
-                          Customer sender,
-                          Customer receiver,
-                          String description,
-                          TransactionType type,
-                          LocalDate date,
-                          LocalTime time,
-                          float value)
-    {
-        this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.description = description;
-        this.type = type;
-        this.date = date;
-        this.time = time;
-        this.value = value;
-    }
-
-    // Getters & Setters
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Customer getSender() {
-        return sender;
-    }
-
-    public void setSender(Customer sender) {
-        this.sender = sender;
-    }
-
-    public Customer getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(Customer receiver) {
-        this.receiver = receiver;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    public float getValue() {
-        return value;
-    }
-
-    public void setValue(float value) {
-        this.value = value;
-    }
 }
