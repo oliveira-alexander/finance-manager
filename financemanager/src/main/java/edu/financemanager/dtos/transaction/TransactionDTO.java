@@ -1,6 +1,5 @@
 package edu.financemanager.dtos.transaction;
 
-import edu.financemanager.entities.Customer;
 import edu.financemanager.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +15,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class TransactionDTO {
     private long id;
-    private Customer sender;
-    private Customer receiver;
     private String description;
     private TransactionType type;
     private LocalDate date;

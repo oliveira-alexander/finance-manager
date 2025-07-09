@@ -21,14 +21,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn (name = "sender_id")
-    private Customer sender;
-
-    @ManyToOne
-    @JoinColumn (name = "receiver_id")
-    private Customer receiver;
-
     private String description;
 
     @Enumerated (EnumType.STRING)
@@ -38,16 +30,12 @@ public class Transaction {
     private LocalTime transaction_time;
     private float transaction_value;
 
-    public Transaction(Customer sender,
-                       Customer receiver,
-                       String description,
+    public Transaction(String description,
                        TransactionType transaction_type,
                         LocalDate transaction_date,
                         LocalTime transaction_time,
                         float transaction_value)
     {
-        this.sender = sender;
-        this.receiver = receiver;
         this.description = description;
         this.transaction_type = transaction_type;
         this.transaction_date = transaction_date;
