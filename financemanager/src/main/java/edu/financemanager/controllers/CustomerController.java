@@ -3,6 +3,7 @@ package edu.financemanager.controllers;
 import edu.financemanager.dtos.customer.CustomerCreateDTO;
 import edu.financemanager.dtos.customer.CustomerDTO;
 import edu.financemanager.interfaces.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ public class CustomerController {
     private CustomerService service;
 
     @GetMapping ("/{id}")
-    public ResponseEntity<CustomerDTO> get(@PathVariable (name = "id") long id)
+    public ResponseEntity<CustomerDTO> get(@Valid @PathVariable (name = "id") long id)
     {
         return ResponseEntity.ok(service.get(id));
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDTO> insert (@RequestBody CustomerCreateDTO customer)
+    public ResponseEntity<CustomerDTO> insert (@RequestBody @Valid CustomerCreateDTO customer)
     {
         return ResponseEntity.ok(service.insert(customer));
     }

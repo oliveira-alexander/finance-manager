@@ -1,45 +1,24 @@
 package edu.financemanager.dtos.customer;
 
-import java.time.LocalDate;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerCreateDTO {
+    @NotNull (message = "O nome deve ser informado!")
+    @Size (min = 5, message = "O nome deve ter no mínimo 5 caracteres!")
+    @Size (max = 50, message = "O nome deve ter no máximo 50 caracteres!")
     private String name;
-    private LocalDate birthday;
+
+    @NotNull (message = "O E-mail deve ser informado!")
+    @Email (message = "E-mail inválido!")
     private String email;
-
-    // Constructors
-
-    public CustomerCreateDTO() {}
-
-    public CustomerCreateDTO(String name, LocalDate birthday, String email)
-    {
-        this.name = name;
-        this.birthday = birthday;
-        this.email = email;
-    }
-
-    // Getters & Setters
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
 }
