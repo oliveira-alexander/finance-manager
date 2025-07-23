@@ -4,6 +4,7 @@ import edu.financemanager.dtos.category.CategoryCreateDTO;
 import edu.financemanager.dtos.category.CategoryDTO;
 import edu.financemanager.dtos.category.CategoryFilterDTO;
 import edu.financemanager.entities.Category;
+import edu.financemanager.exceptions.Category.CategoryNotFoundException;
 import edu.financemanager.interfaces.CategoryService;
 import edu.financemanager.repositories.CategoryRepository;
 import edu.financemanager.repositories.CategorySpecs;
@@ -38,5 +39,19 @@ public class CategoryServiceImpl implements CategoryService {
         );
 
         return categoriesReturn;
+    }
+
+    @Override
+    public CategoryDTO update(CategoryDTO category) {
+        Category updatedCategory = repository.save(new Category(category.id(), category.type(), category.description()));
+        return new CategoryDTO(updatedCategory.getId(), updatedCategory.getType(), updatedCategory.getDescription());
+    }
+
+    @Override
+    public void delete(Long id) {
+        if(!(repository.existsById(id)))
+            throw new CategoryNotFoundException();
+
+        repository.deleteById(id);
     }
 }
