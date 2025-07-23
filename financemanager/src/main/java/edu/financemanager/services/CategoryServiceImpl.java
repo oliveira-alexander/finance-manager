@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO insert(CategoryCreateDTO category) {
-        var newCategory = repository.save(new Category(category.getType(), category.getDescription()));
+        Category newCategory = repository.save(new Category(category.type(), category.description()));
         return new CategoryDTO(newCategory.getId(), newCategory.getType(), newCategory.getDescription());
     }
 

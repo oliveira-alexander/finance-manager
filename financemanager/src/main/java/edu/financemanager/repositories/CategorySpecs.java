@@ -15,12 +15,12 @@ public class CategorySpecs {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (filter.getType() != null){
-                predicates.add(cb.equal(root.get("type"), filter.getType()));
+            if (filter.type() != null){
+                predicates.add(cb.equal(root.get("type"), filter.type()));
             }
 
-            if(filter.getDescription() != null){
-                predicates.add(cb.like(root.get("description"), filter.getDescription() + "%"));
+            if(filter.description() != null){
+                predicates.add(cb.like(root.get("description"), filter.description() + "%"));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
