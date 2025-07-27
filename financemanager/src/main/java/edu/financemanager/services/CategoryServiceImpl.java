@@ -6,6 +6,7 @@ import edu.financemanager.dtos.category.CategoryFilterDTO;
 import edu.financemanager.entities.Category;
 import edu.financemanager.exceptions.Category.CategoryNotFoundException;
 import edu.financemanager.interfaces.CategoryService;
+import edu.financemanager.interfaces.validators.CategoryValidator;
 import edu.financemanager.repositories.CategoryRepository;
 import edu.financemanager.repositories.CategorySpecs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,19 @@ import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
+    private final CategoryValidator validator;
 
     @Autowired
-    public CategoryServiceImpl(CategoryRepository repository){
+    public CategoryServiceImpl(CategoryRepository repository, CategoryValidator validator){
         this.repository = repository;
+        this.validator = validator;
     }
 
     @Override
     public CategoryDTO insert(CategoryCreateDTO category) {
+        validator.validateCreate(category);
+
         Category newCategory = repository.save(new Category(category.type(), category.description()));
         return new CategoryDTO(newCategory.getId(), newCategory.getType(), newCategory.getDescription());
     }
@@ -43,15 +48,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO update(CategoryDTO category) {
+        validator.validateUpdate(category);
+
         Category updatedCategory = repository.save(new Category(category.id(), category.type(), category.description()));
         return new CategoryDTO(updatedCategory.getId(), updatedCategory.getType(), updatedCategory.getDescription());
     }
 
     @Override
     public void delete(Long id) {
-        if(!(repository.existsById(id)))
-            throw new CategoryNotFoundException();
-
+        validator.validateDelete(id);
         repository.deleteById(id);
     }
 }
