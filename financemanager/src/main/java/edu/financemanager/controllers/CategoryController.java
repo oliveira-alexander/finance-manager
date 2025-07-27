@@ -1,5 +1,6 @@
 package edu.financemanager.controllers;
 
+import edu.financemanager.data.ApiResponse;
 import edu.financemanager.dtos.category.CategoryCreateDTO;
 import edu.financemanager.dtos.category.CategoryDTO;
 import edu.financemanager.dtos.category.CategoryFilterDTO;
@@ -18,27 +19,42 @@ public class CategoryController {
     private CategoryService service;
 
     @PostMapping
-    public CategoryDTO create(@RequestBody CategoryCreateDTO category){
-        return service.insert(category);
+    public ResponseEntity<ApiResponse<CategoryDTO>> create(@RequestBody CategoryCreateDTO newCategory){
+        CategoryDTO category = service.insert(newCategory);
+
+        ApiResponse<CategoryDTO> response = new ApiResponse<>();
+        response.setData(category);
+        response.setMessage(null);
+
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
     @GetMapping
-    public List<CategoryDTO> find(@ModelAttribute CategoryFilterDTO filter){
-        return service.find(filter);
+    public ResponseEntity<ApiResponse<List<CategoryDTO>>> find(@ModelAttribute CategoryFilterDTO filter){
+        List<CategoryDTO> categories = service.find(filter);
+
+        ApiResponse<List<CategoryDTO>> response = new ApiResponse<>();
+        response.setData(categories);
+        response.setMessage(null);
+
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
     @PutMapping
-    public CategoryDTO update(@RequestBody CategoryDTO category)
+    public ResponseEntity<ApiResponse<CategoryDTO>> update(@RequestBody CategoryDTO category)
     {
-        return service.update(category);
+        CategoryDTO updatedCategory = service.update(category);
+        ApiResponse<CategoryDTO> response = new ApiResponse<>();
+        response.setData(updatedCategory);
+        response.setMessage(null);
+
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id)
+    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id)
     {
         service.delete(id);
-        return new ResponseEntity<Void>(HttpStatusCode.valueOf(200));
+        return new ResponseEntity<>(new ApiResponse<Void>(null, "Categoria deletada com sucesso."),HttpStatusCode.valueOf(200));
     }
-
-
 }
