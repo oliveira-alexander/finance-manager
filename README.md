@@ -5,8 +5,6 @@ Aplicativo para gestão pessoal de transações financeiras
 O Finance manager existe para simplificar a gestão pessoal de finanças.
 
 # ✅ Principais Funcionalidades
-• Cadastro de usuários <br>
-• Login / Autenticação de usuários <br>
 • CRUD de transações financeiras (Débitos / Créditos) <br>
 • Cadastro de categorias personalizáveis <br>
 • Documentação em Swagger <br>
